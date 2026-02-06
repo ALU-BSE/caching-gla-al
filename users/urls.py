@@ -1,10 +1,11 @@
-from django.urls import path, include
 from rest_framework import routers
+from django.urls import path, include
+from .views import UserViewSet
 
-from users.views import UserViewSet
-
+# DRF router for UserViewSet
 router = routers.DefaultRouter()
-router.register(r'', UserViewSet)
+router.register(r'', UserViewSet, basename='user')
 
 urlpatterns = [
-] + router.urls
+    path('', include(router.urls)),
+]
